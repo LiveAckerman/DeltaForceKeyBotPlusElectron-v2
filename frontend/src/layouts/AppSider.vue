@@ -29,6 +29,12 @@ const current = ref('menu_1');
 const menu = ref({
   'menu_1': {
     icon: 'icon-fengche',
+    title: '首页',
+    pageName: 'Work',
+    params: {}
+  },
+  'menu_2': {
+    icon: 'icon-fengche',
     title: '框架',
     pageName: 'Framework',
     params: {}

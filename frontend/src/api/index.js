@@ -6,6 +6,10 @@
  * Definition of communication channels between main process and rendering process
  */
 const ipcApiRoute = {
+  test: {
+    test: 'controller/test/test',
+    runTest: 'controller/test/runTest',
+  },
   example: {
     test: 'controller/example/test',
   },
@@ -29,7 +33,7 @@ const ipcApiRoute = {
     createPoolNotice: 'controller/framework/createPoolNotice',
     someJobByPool: 'controller/framework/someJobByPool',
     hello: 'controller/framework/hello',
-    openSoftware: 'controller/framework/openSoftware', 
+    openSoftware: 'controller/framework/openSoftware',
   },
 
   // os
@@ -79,7 +83,7 @@ const specialIpcRoute = {
 }
 
 export {
-  ipcApiRoute, 
+  ipcApiRoute,
   specialIpcRoute
 }
 

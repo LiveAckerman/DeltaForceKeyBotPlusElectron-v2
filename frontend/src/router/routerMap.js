@@ -9,29 +9,38 @@ const constantRouterMap = [
     component: () => import('@/layouts/AppSider.vue'),
     children: [
       {
+        path: '/work',
+        name: 'Work',
+        component: () => import('@/layouts/Menu.vue'),
+        props: { id: 'work' },
+        //props: true,
+        redirect: { name: 'ConfigKeyCardInfo' },
+        children: [
+          {
+            path: 'configKeyCardInfo',
+            name: 'ConfigKeyCardInfo',
+            component: () => import('@/views/work/configKeyCardInfo/index.vue')
+          },
+          {
+            path: 'configLocationInfo',
+            name: 'ConfigLocationInfo',
+            component: () => import('@/views/work/configLocationInfo/index.vue')
+          },
+          {
+            path: 'runTask',
+            name: 'RunTask',
+            component: () => import('@/views/work/runTask/index.vue')
+          },
+        ]
+      },
+      {
         path: '/framework',
         name: 'Framework',
         component: () => import('@/layouts/Menu.vue'),
         props: { id: 'framework' },
         //props: true,
-        redirect: { name: 'configKeyCardInfo' },
+        redirect: { name: 'FrameworkSocketIpc' },
         children: [
- {
-            path: 'configKeyCardInfo',
-            name: 'configKeyCardInfo',
-            component: () => import('@/views/framework/configKeyCardInfo/index.vue')
-          },
- {
-            path: 'configLocationInfo',
-            name: 'configLocationInfo',
-            component: () => import('@/views/framework/configLocationInfo/index.vue')
-          },
- {
-            path: 'runTask',
-            name: 'runTask',
-            component: () => import('@/views/framework/runTask/index.vue')
-          },
-        /* ------ */
           {
             path: '/framework/socket/ipc',
             name: 'FrameworkSocketIpc',

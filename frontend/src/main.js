@@ -1,5 +1,6 @@
 import * as AntIcon from '@ant-design/icons-vue';
 import Antd from 'ant-design-vue';
+import 'virtual:uno.css'
 import { createApp } from 'vue';
 import App from './App.vue';
 import './assets/global.less';

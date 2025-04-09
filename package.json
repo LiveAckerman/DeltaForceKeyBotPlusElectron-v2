@@ -47,13 +47,18 @@
     "debug": "^4.4.0",
     "ee-bin": "^4.1.7",
     "electron": "^31.7.6",
-    "electron-builder": "^25.1.8"
+    "electron-builder": "^25.1.8",
+    "unocss": "^66.1.0-beta.10"
   },
   "dependencies": {
+    "@nut-tree/nut-js": "^3.1.2",
     "axios": "^1.7.9",
     "better-sqlite3": "^11.7.0",
     "dayjs": "^1.11.13",
     "ee-core": "^4.1.2",
-    "electron-updater": "^6.3.8"
+    "electron-updater": "^6.3.8",
+    "node-window-manager": "^2.2.4",
+    "tesseract.js": "^6.0.1",
+    "uiohook-napi": "^1.5.4"
   }
 }
