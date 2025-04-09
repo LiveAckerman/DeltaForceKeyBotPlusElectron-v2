@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"electron-egg/demo/util"
+	"DeltaForceKeyBotPlusElectron/demo/util"
 
 	"github.com/wallace5303/ee-go/ehelper"
 	"github.com/wallace5303/ee-go/elog"

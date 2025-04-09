@@ -1,7 +1,7 @@
 package router
 
 import (
-	"electron-egg/api"
+	"DeltaForceKeyBotPlusElectron/api"
 
 	eRouter "github.com/wallace5303/ee-go/ehttp/router"
 )

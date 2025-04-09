@@ -25,7 +25,7 @@ class CrossService {
       num++;
     })
 
-    return 'hello electron-egg';
+    return 'hello DeltaForceKeyBotPlusElectron';
   }
 
   getUrl(name) {
@@ -39,13 +39,13 @@ class CrossService {
     } else {
       cross.killByName(name);
     }
-  }  
+  }
 
   /**
    * create go service
-   * In the default configuration, services can be started with applications. 
+   * In the default configuration, services can be started with applications.
    * Developers can turn off the configuration and create it manually.
-   */   
+   */
   async createGoServer() {
     // method 1: Use the default Settings
     //const entity = await cross.run(serviceName);
@@ -94,13 +94,13 @@ class CrossService {
     logger.info('server url:', cross.getUrl(entity.name));
 
     return;
-  }  
+  }
 
   /**
    * create python service
-   * In the default configuration, services can be started with applications. 
+   * In the default configuration, services can be started with applications.
    * Developers can turn off the configuration and create it manually.
-   */   
+   */
   async createPythonServer() {
     // method 1: Use the default Settings
     //const entity = await cross.run(serviceName);
@@ -141,11 +141,11 @@ class CrossService {
     }
 
     return null;
-  }  
+  }
 }
 CrossService.toString = () => '[class CrossService]';
 
 module.exports = {
   CrossService,
   crossService: new CrossService()
-};  
+};

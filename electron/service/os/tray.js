@@ -14,7 +14,7 @@ class TrayService {
   constructor() {
     this.tray = null;
     this.config = {
-      title: 'electron-egg',
+      title: 'DeltaForceKeyBotPlusElectron',
       icon: '/public/images/tray.png'
     }
   }
@@ -30,7 +30,7 @@ class TrayService {
 
     // tray icon
     const iconPath = path.join(getBaseDir(), cfg.icon);
-  
+
     // 托盘菜单功能列表
     const trayMenuTemplate = [
       {
@@ -46,7 +46,7 @@ class TrayService {
         }
       }
     ]
-  
+
     // 设置一个标识，点击关闭，最小化到托盘
     setCloseAndQuit(false);
     mainWindow.on('close', (event) => {
@@ -56,7 +56,7 @@ class TrayService {
       mainWindow.hide();
       event.preventDefault();
     });
-    
+
     // 实例化托盘
     this.tray = new Tray(iconPath);
     this.tray.setToolTip(cfg.title);

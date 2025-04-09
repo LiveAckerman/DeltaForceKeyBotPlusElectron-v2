@@ -13,12 +13,12 @@ class CrossController {
    */
   info() {
     crossService.info();
-    return 'hello electron-egg';
+    return 'hello DeltaForceKeyBotPlusElectron';
   }
 
   /**
    * Get service url
-   */  
+   */
   async getUrl(args) {
     const { name } = args;
     const serverUrl = crossService.getUrl(name);
@@ -28,7 +28,7 @@ class CrossController {
   /**
    * kill service
    * By default (modifiable), killing the process will exit the electron application.
-   */  
+   */
   async killServer(args) {
     const { type, name } = args;
     crossService.killServer(type, name);
@@ -37,7 +37,7 @@ class CrossController {
 
   /**
    * create service
-   */   
+   */
   async createServer(args) {
     const { program } = args;
     if (program == 'go') {
@@ -62,4 +62,4 @@ class CrossController {
 }
 CrossController.toString = () => '[class CrossController]';
 
-module.exports = CrossController;  
+module.exports = CrossController;

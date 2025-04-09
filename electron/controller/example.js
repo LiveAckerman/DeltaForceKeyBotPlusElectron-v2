@@ -10,9 +10,9 @@ class ExampleController {
    * test
    */
   async test () {
-    return 'hello electron-egg';
+    return 'hello DeltaForceKeyBotPlusElectron';
   }
 }
 ExampleController.toString = () => '[class ExampleController]';
 
-module.exports = ExampleController;  
+module.exports = ExampleController;

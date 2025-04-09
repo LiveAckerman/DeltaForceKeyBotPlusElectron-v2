@@ -1,24 +1,13 @@
 <template>
   <a-layout id="app-layout-sider">
-    <a-layout-sider
-      v-model="collapsed"
-      theme="light"
-      class="layout-sider"
-      width="100"
-    >
+    <a-layout-sider v-model="collapsed" theme="light" class="layout-sider" width="100">
       <div class="logo">
         <img class="pic-logo" src="~@/assets/logo.png">
       </div>
-      <a-menu 
-        class="menu-item" 
-        theme="light" 
-        mode="inline"
-        :selectedKeys="[current]"
-        @click="menuHandle"
-      >
+      <a-menu class="menu-item" theme="light" mode="inline" :selectedKeys="[current]" @click="menuHandle">
         <a-menu-item v-for="(menuInfo, index) in menu" :key="index">
           <icon-font :type="menuInfo.icon" />
-          {{ menuInfo.title }} 
+          {{ menuInfo.title }}
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
@@ -44,24 +33,6 @@ const menu = ref({
     pageName: 'Framework',
     params: {}
   },
-  'menu_2': {
-    icon: 'icon-niudan',
-    title: '系统',
-    pageName: 'Os',
-    params: {}
-  },
-  'menu_3': {
-    icon: 'icon-liuxing',
-    title: '特效',
-    pageName: 'Effect',
-    params: {}
-  },
-  'menu_4': {
-    icon: 'icon-gouwu',
-    title: 'cross',
-    pageName: 'Cross',
-    params: {}
-  }
 });
 
 onMounted(() => {
@@ -84,18 +55,22 @@ function menuHandle(e) {
 // 嵌套
 #app-layout-sider {
   height: 100%;
+
   .logo {
     border-bottom: 1px solid #e8e8e8;
   }
+
   .pic-logo {
     height: 32px;
     //background: rgba(139, 137, 137, 0.2);
     margin: 10px;
   }
+
   .layout-sider {
     border-top: 1px solid #e8e8e8;
     border-right: 1px solid #e8e8e8;
   }
+
   .menu-item {
     .ant-menu-item {
       background-color: #fff;
@@ -104,6 +79,7 @@ function menuHandle(e) {
       padding: 0 0px !important;
     }
   }
+
   .layout-content {
     //background-color: #fff;
   }

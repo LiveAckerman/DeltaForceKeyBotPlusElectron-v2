@@ -11,7 +11,7 @@ module.exports = () => {
     openDevTools: false,
     singleLock: true,
     windowsOption: {
-      title: 'electron-egg',
+      title: 'DeltaForceKeyBotPlusElectron',
       width: 980,
       height: 650,
       minWidth: 400,
@@ -31,11 +31,11 @@ module.exports = () => {
       outputJSON: false,
       appLogName: 'ee.log',
       coreLogName: 'ee-core.log',
-      errorLogName: 'ee-error.log' 
+      errorLogName: 'ee-error.log'
     },
     remote: {
       enable: false,
-      url: 'http://electron-egg.kaka996.com/'
+      url: 'http://DeltaForceKeyBotPlusElectron.kaka996.com/'
     },
     socketServer: {
       enable: false,
@@ -54,7 +54,7 @@ module.exports = () => {
     httpServer: {
       enable: true,
       https: {
-        enable: false, 
+        enable: false,
         key: '/public/ssl/localhost+1.key',
         cert: '/public/ssl/localhost+1.pem'
       },

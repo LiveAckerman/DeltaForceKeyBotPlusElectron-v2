@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"electron-egg/demo/util"
+	"DeltaForceKeyBotPlusElectron/demo/util"
 
 	"github.com/wallace5303/ee-go/elog"
 )

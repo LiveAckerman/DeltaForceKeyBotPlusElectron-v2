@@ -1,16 +1,9 @@
 <template>
   <a-layout id="app-menu">
-    <a-layout-sider
-      theme="light"
-      class="layout-sider"
-    >
-      <a-menu 
-        theme="light" 
-        mode="inline" 
-        :selectedKeys="[current]"
-        @click="changeMenu">
+    <a-layout-sider theme="light" class="layout-sider">
+      <a-menu theme="light" mode="inline" :selectedKeys="[current]" @click="changeMenu">
         <a-menu-item v-for="(menuInfo, subIndex) in menu" :key="subIndex">
-          <router-link :to="{ name: menuInfo.pageName, params: menuInfo.params}">
+          <router-link :to="{ name: menuInfo.pageName, params: menuInfo.params }">
             <span>{{ menuInfo.title }}</span>
           </router-link>
         </a-menu-item>
@@ -65,6 +58,7 @@ function changeMenu(e) {
 #app-menu {
   height: 100%;
   text-align: center;
+
   .layout-sider {
     border-top: 1px solid #e8e8e8;
     border-right: 1px solid #e8e8e8;

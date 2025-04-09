@@ -1,9 +1,9 @@
 package demo
 
 import (
-	"electron-egg/demo/job"
-	//"electron-egg/demo/sql/sqlitelib"
-	"electron-egg/demo/util"
+	"DeltaForceKeyBotPlusElectron/demo/job"
+	//"DeltaForceKeyBotPlusElectron/demo/sql/sqlitelib"
+	"DeltaForceKeyBotPlusElectron/demo/util"
 
 	"github.com/wallace5303/ee-go/eapp"
 	"github.com/wallace5303/ee-go/elog"

@@ -1,4 +1,4 @@
-module electron-egg
+module DeltaForceKeyBotPlusElectron
 
 go 1.20
 

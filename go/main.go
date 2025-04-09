@@ -5,8 +5,8 @@ import (
 
 	"github.com/wallace5303/ee-go/eboot"
 
-	"electron-egg/demo"
-	"electron-egg/router"
+	"DeltaForceKeyBotPlusElectron/demo"
+	"DeltaForceKeyBotPlusElectron/router"
 )
 
 var (

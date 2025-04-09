@@ -14,8 +14,24 @@ const constantRouterMap = [
         component: () => import('@/layouts/Menu.vue'),
         props: { id: 'framework' },
         //props: true,
-        redirect: { name: 'FrameworkSocketIpc' },
+        redirect: { name: 'configKeyCardInfo' },
         children: [
+ {
+            path: 'configKeyCardInfo',
+            name: 'configKeyCardInfo',
+            component: () => import('@/views/framework/configKeyCardInfo/index.vue')
+          },
+ {
+            path: 'configLocationInfo',
+            name: 'configLocationInfo',
+            component: () => import('@/views/framework/configLocationInfo/index.vue')
+          },
+ {
+            path: 'runTask',
+            name: 'runTask',
+            component: () => import('@/views/framework/runTask/index.vue')
+          },
+        /* ------ */
           {
             path: '/framework/socket/ipc',
             name: 'FrameworkSocketIpc',
@@ -30,7 +46,7 @@ const constantRouterMap = [
             path: '/framework/socket/socketserver',
             name: 'FrameworkSocketSocketServer',
             component: () => import('@/views/framework/socket/SocketServer.vue')
-          }, 
+          },
           {
             path: '/framework/sqlitedb/index',
             name: 'FrameworkSqliteDBIndex',
@@ -51,7 +67,7 @@ const constantRouterMap = [
             name: 'FrameworkUpdaterIndex',
             component: () => import('@/views/framework/updater/Index.vue')
           },
-        ]  
+        ]
       },
       {
         path: '/os',
@@ -80,8 +96,8 @@ const constantRouterMap = [
             name: 'OsNotificationIndex',
             component: () => import('@/views/os/notification/Index.vue')
           }
-        ]  
-      },      
+        ]
+      },
       {
         path: '/effect',
         name: 'Effect',
@@ -94,7 +110,7 @@ const constantRouterMap = [
             name: 'EffectLoginIndex',
             component: () => import('@/views/effect/login/Index.vue')
           }
-        ]  
+        ]
       },
       {
         path: '/cross',
@@ -118,7 +134,7 @@ const constantRouterMap = [
             name: 'CrossPythonIndex',
             component: () => import('@/views/cross/python/Index.vue')
           },
-        ]  
+        ]
       },
     ]
   },

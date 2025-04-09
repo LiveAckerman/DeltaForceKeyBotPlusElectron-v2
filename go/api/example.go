@@ -9,7 +9,7 @@ import (
 	"github.com/wallace5303/ee-go/elog"
 
 	"github.com/gin-gonic/gin"
-	//"electron-egg/demo/sql/sqlitelib"
+	//"DeltaForceKeyBotPlusElectron/demo/sql/sqlitelib"
 )
 
 // 使用 router Ctx
@@ -17,7 +17,7 @@ func Hello(c *router.Ctx) {
 	ret := ehelper.GetJson()
 	defer c.JSON(ret)
 
-	ret.Data = "hello electron-egg"
+	ret.Data = "hello DeltaForceKeyBotPlusElectron"
 	elog.Logger.Info(" print Hello ")
 }
 
