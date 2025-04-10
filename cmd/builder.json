@@ -1,5 +1,5 @@
 {
-  "productName": "ee",
+  "productName": "DeltaForceKeyBotPlusElectron",
   "appId": "com.electron.ee",
   "copyright": "© 2025 duola Technology Co., Ltd.",
   "directories": {
@@ -15,7 +15,8 @@
     "!logs/",
     "!out/",
     "!go/",
-    "!python/"
+    "!python/",
+    "!bin/"
   ],
   "extraResources": {
     "from": "build/extraResources/",
@@ -30,7 +31,7 @@
     "installerHeaderIcon": "build/icons/icon.ico",
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "ee"
+    "shortcutName": "DeltaForceKeyBotPlusElectron"
   },
   "publish": [
     {
