@@ -1,10 +1,14 @@
 'use strict';
 
-const { app: electronApp, screen } = require('electron');
+const { app: electronApp, screen, ipcMain } = require('electron');
 const { logger } = require('ee-core/log');
 const { getConfig } = require('ee-core/config');
 const { getMainWindow } = require('ee-core/electron');
 const { uIOhook } = require('uiohook-napi'); // 引入 uiohook-napi
+const TestController = require('./controller/test');
+const testController = new TestController();
+
+
 
 function bandingKeyDownEvent() {
           // 监听全局按键事件
@@ -72,6 +76,10 @@ class Lifecycle {
 
     /* 绑定全局键盘事件 */
     // bandingKeyDownEvent()
+
+    ipcMain.handle('controller/test/runTest', async (event, args) => {
+      return await testController.runTest(args);
+    });
   }
 
   /**

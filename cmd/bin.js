@@ -28,6 +28,9 @@ module.exports = {
    * ee-bin build
    */
   build: {
+    "asarUnpack": [
+      "public/static" // 将 public/static 目录解压到 app.asar.unpacked
+    ],
     frontend: {
       directory: './frontend',
       cmd: 'npm',
@@ -87,7 +90,7 @@ module.exports = {
 
   /**
    * 移动资源
-   * ee-bin move 
+   * ee-bin move
    */
   move: {
     frontend_dist: {
@@ -114,7 +117,7 @@ module.exports = {
       src: './python/dist',
       dest: './build/extraResources/py'
     },
-  },  
+  },
 
   /**
    * 预发布模式（prod）
@@ -128,7 +131,7 @@ module.exports = {
 
   /**
    * 加密
-   */  
+   */
   encrypt: {
     frontend: {
       type: 'none',
@@ -137,7 +140,7 @@ module.exports = {
       ],
       cleanFiles: ['./public/dist'],
       confusionOptions: {
-        compact: true,      
+        compact: true,
         stringArray: true,
         stringArrayEncoding: ['none'],
         stringArrayCallsTransform: true,
@@ -156,7 +159,7 @@ module.exports = {
         './public/electron/preload/bridge.js',
       ],
       confusionOptions: {
-        compact: true,      
+        compact: true,
         stringArray: true,
         stringArrayEncoding: ['none'],
         deadCodeInjection: false,
@@ -176,25 +179,25 @@ module.exports = {
     go: {
       directory: './go',
       cmd: 'air',
-      args: ['-c=config/.air.toml' ],
+      args: ['-c=config/.air.toml'],
     },
-    // windows 单独调试，air 实现 go 热重载 
+    // windows 单独调试，air 实现 go 热重载
     go_w: {
       directory: './go',
       cmd: 'air',
-      args: ['-c=config/.air.windows.toml' ],
-    },    
+      args: ['-c=config/.air.windows.toml'],
+    },
     // 单独调试，以基础方式启动 go
     go2: {
       directory: './go',
       cmd: 'go',
-      args: ['run', './main.go', '--env=dev','--basedir=../', '--port=7073'],
-    },     
+      args: ['run', './main.go', '--env=dev', '--basedir=../', '--port=7073'],
+    },
     python: {
       directory: './python',
       cmd: 'python',
       args: ['./main.py', '--port=7074'],
       stdio: "inherit", // ignore
     },
-  },  
+  },
 };

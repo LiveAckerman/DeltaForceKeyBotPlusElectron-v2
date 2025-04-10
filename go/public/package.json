@@ -34,10 +34,10 @@
   "repository": "https://github.com/dromara/DeltaForceKeyBotPlusElectron.git",
   "keywords": [
     "Electron",
-    "DeltaForceKeyBotPlusElectron",
+    "electron-egg",
     "ElectronEgg"
   ],
-  "author": "哆啦好梦, Inc <530353222@qq.com>",
+  "author": "LeviAckerman, Inc <2537791055@qq.com>",
   "license": "Apache",
   "devDependencies": {
     "@electron/rebuild": "^3.7.1",

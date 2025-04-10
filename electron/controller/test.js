@@ -1,11 +1,14 @@
 'use strict';
 
 const { testService } = require('../service/test');
-const { screen, Region, mouse, Button, Point } = require('@nut-tree/nut-js'); // 引入 nut-js
+const { screen, Region, mouse, Button, Point, keyboard, Key } = require('@nut-tree/nut-js'); // 引入 nut-js
 const Tesseract = require('tesseract.js'); // 引入 tesseract.js
 const path = require('path'); // 用于处理文件路径
 const sharp = require('sharp'); // 用于图片处理
 const { windowManager } = require('node-window-manager'); // 引入窗口管理库
+const { app, BrowserWindow } = require('electron'); // 引入 electron
+const fs = require('fs'); // 引入文件系统模块
+const { getMainWindow } = require('ee-core/electron');
 
 /**
  * 对图片进行二值化等预处理操作
@@ -29,6 +32,11 @@ async function preprocessImage(imagePath, outputPath) {
   }
 }
 
+
+function getAssetPath(relativePath) {
+  return path.join(app.getPath('appData'), 'resources', relativePath);
+}
+
 /**
  * Cross
  * @class
@@ -44,79 +52,56 @@ class TestController {
   /* test */
   async runTest(args) {
     try {
-      // 0. 最小化当前程序窗口
-      const currentWindow = windowManager.getActiveWindow();
+      const logs = [];
+      logs.push('开始执行测试任务...');
+
+      // 最小化当前窗口
+      const currentWindow = getMainWindow();
       if (currentWindow) {
-        currentWindow.minimize(); // 最小化当前窗口
+        currentWindow.minimize();
+        logs.push('当前窗口已最小化');
       }
 
-      // 1. 查找标题为 "三角洲行动" 的窗口
+      // 查找目标窗口
       const windows = windowManager.getWindows();
-      const targetWindow = windows.find(window => window.getTitle().includes('三角洲行动  '));
-
+      const targetWindow = windows.find(window => window.getTitle() === '三角洲行动  ');
       if (!targetWindow) {
-        console.error('未找到标题为 "三角洲行动" 的窗口');
-        return;
+        logs.push('未找到标题为 "三角洲行动" 的窗口');
+        return { logs, error: '未找到目标窗口' };
       } else {
-        // 显示并聚焦目标窗口
+        targetWindow.restore();
         targetWindow.bringToTop();
+        logs.push('目标窗口已恢复并置顶');
       }
 
-      // 2. 将鼠标移动到指定位置并点击
-      const targetPosition = new Point(500, 300); // 示例位置 (500, 300)
-      await mouse.setPosition(targetPosition); // 移动鼠标到指定位置
-      await mouse.click(Button.LEFT); // 左键点击
+      // 模拟鼠标点击
+      const targetPosition = new Point(500, 300);
+      await mouse.setPosition(targetPosition);
+      await mouse.click(Button.LEFT);
+      logs.push('鼠标已点击目标位置');
 
-      // 3. 等待 1 秒钟以确保点击生效
-      await new Promise(resolve => setTimeout(resolve, 1000)); // 等待 1 秒钟
-
-      // 3. 定义截图区域
-      const [x, y, width, height] = [261, 153, 279, 63];
-      const region = new Region(x, y, width, height); // 定义截图区域
-      console.log('截图区域:', region);
-
-      const staticDir = path.join(__dirname, '../../static'); // 静态资源目录
-
-      // 4. 截取屏幕区域并保存为图片
-      const screenshotPath = await screen.captureRegion('screenshot', region, '.png', staticDir);
-      console.log('截图已保存:', screenshotPath);
-
-      // 5. 对截图进行二值化等预处理
-      const processedPath = path.join(staticDir, 'processed-screenshot.png'); // 处理后的图片路径
+      // 截图并处理
+      const staticDir = getAssetPath('public/static');
+      const screenshotPath = path.join(staticDir, 'screenshot.png');
+      const processedPath = path.join(staticDir, 'processed-screenshot.png');
+      await screen.captureRegion('screenshot', new Region(1475, 154, 242, 39), '.png', staticDir);
+      logs.push(`截图已保存: ${screenshotPath}`);
       await preprocessImage(screenshotPath, processedPath);
+      logs.push(`图片已处理: ${processedPath}`);
 
-      // 6. 使用 Tesseract.js 识别文字
-      const langPath = path.join(__dirname, '../../tessdata-lang'); // 本地语言包路径
-      console.log('语言包路径:', langPath);
-
-      const result = await Tesseract.recognize(processedPath, 'eng', {
-        langPath: langPath, // 指定语言包路径
-        logger: (info) => console.log(info), // 打印日志
-        oem: Tesseract.OEM.LSTM_ONLY, // 使用LSTM引擎
-        psm: Tesseract.PSM.SINGLE_BLOCK, // 单块模式，适用于单个文本行
-        tessedit_char_whitelist: '0123456789', // 仅允许识别数字
+      // OCR 识别
+      const langPath = path.join(app.getAppPath(), 'tessdata-lang');
+      const result = await Tesseract.recognize(processedPath, 'chi_sim', {
+        langPath,
+        oem: Tesseract.OEM.LSTM_ONLY,
+        psm: Tesseract.PSM.SINGLE_LINE,
       });
+      logs.push(`OCR 识别结果: ${result.data.text.trim()}`);
 
-      // 输出识别结果
-      if (result.data && result.data.text) {
-        console.log('识别到的文字:', result.data.text.trim());
-
-        // 使用正则过滤，只提取数字
-        const regex = /\d+/g; // 匹配数字的正则表达式
-        const matches = result.data.text.match(regex); // 查找所有匹配的数字
-        if (matches) {
-          console.log('提取到的数字:', parseInt(matches.join('')));
-        } else {
-          console.log('未能提取到数字');
-        }
-        return parseInt(matches.join(''));
-      } else {
-        console.log('未能识别到文字');
-        return '未能识别到文字';
-      }
+      return { logs, text: result.data.text.trim() };
     } catch (error) {
       console.error('执行测试时发生错误:', error);
-      return `执行测试时发生错误: ${error.message}`;
+      return { logs: [`执行测试时发生错误: ${error.message}`], error: error.message };
     }
   }
 }
