@@ -28,3 +28,6 @@
 ::-webkit-scrollbar-thumb:active {
   background-color: #07C160;
 }
+.ant-layout-content {
+  padding: 10px;
+}

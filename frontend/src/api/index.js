@@ -6,6 +6,12 @@
  * Definition of communication channels between main process and rendering process
  */
 const ipcApiRoute = {
+  task: {
+    addTask: 'controller/tasks/addTask',
+    getTasks: 'controller/tasks/getTasks',
+    deleteTask: 'controller/tasks/deleteTask',
+    updateTask: 'controller/tasks/updateTask',
+  },
   test: {
     test: 'controller/test/test',
     runTest: 'controller/test/runTest',
