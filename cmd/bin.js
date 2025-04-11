@@ -28,9 +28,6 @@ module.exports = {
    * ee-bin build
    */
   build: {
-    "asarUnpack": [
-      "public/static" // 将 public/static 目录解压到 app.asar.unpacked
-    ],
     frontend: {
       directory: './frontend',
       cmd: 'npm',

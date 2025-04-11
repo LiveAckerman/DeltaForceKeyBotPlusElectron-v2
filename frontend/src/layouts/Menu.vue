@@ -57,7 +57,6 @@ function changeMenu(e) {
 <style lang="less" scoped>
 #app-menu {
   height: 100%;
-  text-align: center;
 
   .layout-sider {
     border-top: 1px solid #e8e8e8;

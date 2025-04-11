@@ -6,6 +6,10 @@
     "output": "out"
   },
   "asar": true,
+  // "asarUnpack": [
+  //   "public/static", // 将 public/static 目录解压到 app.asar.unpacked
+  //   "public/tessdata-lang" // 将 tessdata-lang 目录解压到 app.asar.unpacked
+  // ],
   "files": [
     "**/*",
     "!cmd/",

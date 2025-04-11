@@ -5,7 +5,7 @@ const { logger } = require('ee-core/log');
 const { getConfig } = require('ee-core/config');
 const { getMainWindow } = require('ee-core/electron');
 const { uIOhook } = require('uiohook-napi'); // 引入 uiohook-napi
-const TestController = require('./controller/test');
+const TestController = require('../controller/test');
 const testController = new TestController();
 
 
@@ -73,13 +73,6 @@ class Lifecycle {
    */
   async ready() {
     logger.info('[lifecycle] ready');
-
-    /* 绑定全局键盘事件 */
-    // bandingKeyDownEvent()
-
-    ipcMain.handle('controller/test/runTest', async (event, args) => {
-      return await testController.runTest(args);
-    });
   }
 
   /**
@@ -96,6 +89,14 @@ class Lifecycle {
       }
       win.show();
       win.focus();
+    });
+
+
+    /* 绑定全局键盘事件 */
+    // bandingKeyDownEvent()
+
+    ipcMain.handle('controller/test/runTest', async (event, args) => {
+      return await testController.runTest(args);
     });
   }
 

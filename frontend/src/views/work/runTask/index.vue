@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="bg-white h-full">
+    <a-button type="primary" @click="handleClick1">TEST</a-button>
     <a-button type="primary" @click="handleClick">开始</a-button>
     <div class="log-container">
       <pre>{{ logs }}</pre>
@@ -22,9 +23,15 @@ const handleClick = () => {
     logs.value += `任务失败: ${err.message}\n`; // 添加错误日志
   });
 };
+const handleClick1 = () => {
+  ipc.invoke(ipcApiRoute.test.test, { id: 666 }).then(res => {
+    console.log(JSON.stringify(res));
+  }).catch(err => {
+  });
+};
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .log-container {
   margin-top: 20px;
   padding: 10px;
@@ -32,6 +39,9 @@ const handleClick = () => {
   border: 1px solid #ddd;
   height: 300px;
   overflow-y: auto;
-  white-space: pre-wrap;
+
+  pre {
+    white-space: pre-wrap;
+  }
 }
 </style>
