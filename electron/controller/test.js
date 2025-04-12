@@ -140,7 +140,6 @@ class TestController {
       // setTimeout(async () => {
       // 截图并处理
       const staticDir = getStaticDirPath();
-      // const staticDir = getAssetPath('public/static');
       const screenshotPath = path.join(staticDir, 'screenshot.png');
       const processedPath = path.join(staticDir, 'processed-screenshot.png');
       let [x,y,width,height] = [1970, 208, 326, 50]

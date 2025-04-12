@@ -3,3 +3,7 @@ export const test = {
     runTest: 'controller/test/runTest',
 }
 
+export const task = {
+    run: 'controller/task/run',
+    runTest: 'controller/task/runTest',
+}

@@ -5,9 +5,7 @@ const { logger } = require('ee-core/log');
 const { getConfig } = require('ee-core/config');
 const { getMainWindow } = require('ee-core/electron');
 const { uIOhook } = require('uiohook-napi'); // 引入 uiohook-napi
-const TestController = require('../controller/test');
-const testController = new TestController();
-
+const { initWebSocketServer } = require('../utils/websocket');
 
 
 function bandingKeyDownEvent() {
@@ -73,6 +71,8 @@ class Lifecycle {
    */
   async ready() {
     logger.info('[lifecycle] ready');
+
+    initWebSocketServer(8090); // 初始化 WebSocket 服务
   }
 
   /**
@@ -94,10 +94,6 @@ class Lifecycle {
 
     /* 绑定全局键盘事件 */
     // bandingKeyDownEvent()
-
-    ipcMain.handle('controller/test/runTest', async (event, args) => {
-      return await testController.runTest(args);
-    });
   }
 
   /**
