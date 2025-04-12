@@ -30,7 +30,7 @@ class WindowService {
     } else if (type == 'web') {
       contentUrl = content;
     } else if (type == 'vue') {
-      let addr = 'http://localhost:8080'
+      let addr = 'http://localhost:80'
       if (isProd()) {
         const { mainServer } = getConfig();
         if (isFileProtocol(mainServer.protocol)) {
@@ -50,7 +50,7 @@ class WindowService {
       title: windowTitle,
       x: 10,
       y: 10,
-      width: 980, 
+      width: 980,
       height: 650,
       webPreferences: {
         contextIsolation: false,
@@ -68,7 +68,7 @@ class WindowService {
 
     return winContentsId;
   }
-  
+
   /**
    * Get window contents id
    */
@@ -80,7 +80,7 @@ class WindowService {
     } else {
       win = this.windows[windowName];
     }
-    
+
     return win.webContents.id;
   }
 
@@ -96,7 +96,7 @@ class WindowService {
       const win = this.windows[receiver];
       win.webContents.send('controller/os/window1ToWindow2', content);
     }
-  }  
+  }
 
   /**
    * createNotification
@@ -134,4 +134,4 @@ WindowService.toString = () => '[class WindowService]';
 module.exports = {
   WindowService,
   windowService: new WindowService()
-};  
+};

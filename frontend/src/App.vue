@@ -1,14 +1,15 @@
 <template>
-    <router-view/>
+  <router-view />
 </template>
+
 <script setup>
-import { onMounted } from 'vue';
+import useSettingsStore from '@/store/modules/settings'
+import { handleThemeStyle } from '@/utils/theme'
 
 onMounted(() => {
-  const loadingElement = document.getElementById('loadingPage');
-  if (loadingElement) {
-    loadingElement.remove();
-  }
-});
+  nextTick(() => {
+    // 初始化主题样式
+    handleThemeStyle(useSettingsStore().theme)
+  })
+})
 </script>
-<style lang="less"></style>

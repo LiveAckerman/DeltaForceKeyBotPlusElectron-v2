@@ -12,7 +12,7 @@ module.exports = {
       directory: './frontend',
       cmd: 'npm',
       args: ['run', 'dev'],
-      port: 8080,
+      port: 80,
     },
     electron: {
       directory: './',

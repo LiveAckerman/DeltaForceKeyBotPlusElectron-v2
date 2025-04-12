@@ -79,14 +79,20 @@ function getLangPath() {
 class TestController {
   /* test */
   async test(args) {
-    const data = await testService.test(args);
-    return {
-     getExtraResourcesDir: getExtraResourcesDir(),
-      getBaseDir: getBaseDir(),
-      'app.getAppPath()': app.getAppPath(),
-      'process.resourcesPath': process.resourcesPath,
+    // const data = await testService.test(args);
+    // return {
+    //  getExtraResourcesDir: getExtraResourcesDir(),
+    //   getBaseDir: getBaseDir(),
+    //   'app.getAppPath()': app.getAppPath(),
+    //   'process.resourcesPath': process.resourcesPath,
 
-    };
+    // };
+
+    const targetPosition = new Point(886, 1349);
+    await mouse.setPosition(targetPosition);
+    await mouse.click(Button.LEFT);
+
+    return "测试成功";
   }
 
   /* test */
@@ -119,8 +125,10 @@ class TestController {
         writeLog('目标窗口已恢复并置顶'); // 写入日志
       }
 
+
+
       // 模拟鼠标点击
-      const targetPosition = new Point(500, 300);
+      const targetPosition = new Point(886, 1349);
       await mouse.setPosition(targetPosition);
       await mouse.click(Button.LEFT);
       logs.push('鼠标已点击目标位置');
@@ -135,7 +143,8 @@ class TestController {
       // const staticDir = getAssetPath('public/static');
       const screenshotPath = path.join(staticDir, 'screenshot.png');
       const processedPath = path.join(staticDir, 'processed-screenshot.png');
-      await screen.captureRegion('screenshot', new Region(1475, 154, 242, 39), '.png', staticDir);
+      let [x,y,width,height] = [1970, 208, 326, 50]
+      await screen.captureRegion('screenshot', new Region(x,y,width,height), '.png', staticDir);
       const screenshotMessage = `截图已保存: ${screenshotPath}`;
       logs.push(screenshotMessage);
       writeLog(screenshotMessage); // 写入日志
